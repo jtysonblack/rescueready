@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rescue Ready TC — CPR &amp; First Aid Training | Cleveland, TN</title>
+  <meta name="description" content="American Heart Association CPR, BLS, and First Aid classes in Cleveland, Tennessee. Taught by an active first responder. Sign up for upcoming classes.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ========================================
+       DESIGN TOKENS
+       ======================================== */
+    :root {
+      --navy: #1a3a5c;
+      --red: #c62828;
+      --red-hover: #a51d1d;
+      --blue: #1565c0;
+      --amber: #f59e0b;
+      --stone: #f5f1eb;
+      --stone-dark: #e8e2d9;
+      --slate: #475569;
+      --slate-light: #64748b;
+      --white: #ffffff;
+      --black: #111827;
+
+      --font-display: 'DM Serif Display', Georgia, serif;
+      --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 1.5rem;
+      --space-lg: 2.5rem;
+      --space-xl: 4rem;
+      --space-2xl: 6rem;
+
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+      --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+
+      --max-width: 1080px;
+      --gutter: 16px;
+    }
+
+    /* ========================================
+       RESET & BASE
+       ======================================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--slate);
+      background: var(--white);
+      line-height: 1.65;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { max-width: 100%; height: auto; display: block; }
+
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    h1, h2, h3 {
+      font-family: var(--font-display);
+      color: var(--navy);
+      line-height: 1.2;
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+
+    /* ========================================
+       NAV
+       ======================================== */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--white);
+      border-bottom: 1px solid var(--stone-dark);
+    }
+
+    .nav__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .nav__logo {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+
+    .nav__logo img {
+      height: 44px;
+      width: auto;
+    }
+
+    .nav__links {
+      display: flex;
+      gap: var(--space-md);
+      list-style: none;
+    }
+
+    .nav__links a {
+      color: var(--navy);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav__links a:hover {
+      color: var(--red);
+      text-decoration: none;
+    }
+
+    .nav__cta {
+      background: var(--red);
+      color: var(--white) !important;
+      padding: 8px 20px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+
+    .nav__cta:hover {
+      background: var(--red-hover) !important;
+    }
+
+    /* ========================================
+       HERO
+       ======================================== */
+    .hero {
+      background: var(--navy);
+      color: var(--white);
+      padding: var(--space-2xl) 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0; bottom: 0; left: 0;
+      background: linear-gradient(135deg, var(--navy) 60%, #1e4d7a 100%);
+    }
+
+    .hero__inner {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+      align-items: center;
+    }
+
+    .hero__content h1 {
+      color: var(--white);
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin-bottom: var(--space-sm);
+    }
+
+    .hero__content h1 span {
+      color: var(--amber);
+    }
+
+    .hero__content p {
+      font-size: 1.125rem;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: var(--space-lg);
+      max-width: 480px;
+    }
+
+    .hero__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: var(--space-md);
+    }
+
+    .hero__badge svg {
+      flex-shrink: 0;
+    }
+
+    .hero__image {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .hero__image img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--red);
+      color: var(--white);
+      padding: 14px 32px;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      background: var(--red-hover);
+      text-decoration: none;
+      transform: translateY(-1px);
+    }
+
+    .btn:active { transform: translateY(0); }
+
+    /* ========================================
+       ABOUT
+       ======================================== */
+    .about {
+      padding: var(--space-2xl) 0;
+    }
+
+    .about__inner {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: var(--space-xl);
+      align-items: start;
+    }
+
+    .about__photo {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+    }
+
+    .about__photo img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .about__text h2 {
+      font-size: 2rem;
+      margin-bottom: var(--space-xs);
+    }
+
+    .about__name {
+      font-size: 1.1rem;
+      color: var(--red);
+      font-weight: 600;
+      margin-bottom: var(--space-md);
+    }
+
+    .about__text p {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      margin-bottom: var(--space-sm);
+    }
+
+    /* ========================================
+       CLASSES
+       ======================================== */
+    .classes {
+      background: var(--stone);
+      padding: var(--space-2xl) 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: var(--space-xl);
+    }
+
+    .section-header h2 {
+      font-size: 2rem;
+      margin-bottom: var(--space-xs);
+    }
+
+    .section-header p {
+      color: var(--slate-light);
+      font-size: 1.05rem;
+    }
+
+    .classes__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-md);
+    }
+
+    .class-card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: var(--space-lg);
+      box-shadow: var(--shadow-sm);
+      border-top: 3px solid var(--blue);
+    }
+
+    .class-card h3 {
+      font-size: 1.35rem;
+      margin-bottom: var(--space-xs);
+    }
+
+    .class-card__meta {
+      display: flex;
+      gap: var(--space-md);
+      margin-bottom: var(--space-sm);
+      font-size: 0.9rem;
+    }
+
+    .class-card__meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--slate-light);
+    }
+
+    .class-card p {
+      line-height: 1.7;
+    }
+
+    .class-card__price {
+      display: inline-block;
+      margin-top: var(--space-sm);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    /* ========================================
+       SCHEDULE / SIGN-UP
+       ======================================== */
+    .schedule {
+      padding: var(--space-2xl) 0;
+    }
+
+    .month-block {
+      background: var(--white);
+      border: 1px solid var(--stone-dark);
+      border-left: 4px solid var(--red);
+      border-radius: var(--radius-md);
+      padding: var(--space-lg);
+      margin-bottom: var(--space-lg);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .month-block__header {
+      display: flex;
+      align-items: baseline;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-xs);
+    }
+
+    .month-block__month {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      color: var(--navy);
+    }
+
+    .month-block__year {
+      font-size: 1rem;
+      color: var(--slate-light);
+    }
+
+    .month-block__classes {
+      margin-bottom: var(--space-md);
+      padding-bottom: var(--space-md);
+      border-bottom: 1px solid var(--stone);
+    }
+
+    .month-block__class-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+    }
+
+    .month-block__class-row + .month-block__class-row {
+      border-top: 1px dashed var(--stone-dark);
+    }
+
+    .month-block__class-name {
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    .month-block__class-detail {
+      font-size: 0.9rem;
+      color: var(--slate-light);
+    }
+
+    .month-block__class-price {
+      font-weight: 700;
+      color: var(--navy);
+      font-size: 1.1rem;
+    }
+
+    /* Forms */
+    .signup-form h4 {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: var(--space-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-sm);
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group--full {
+      grid-column: 1 / -1;
+    }
+
+    .form-group label {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      padding: 10px 12px;
+      border: 1px solid var(--stone-dark);
+      border-radius: var(--radius-sm);
+      background: var(--white);
+      color: var(--black);
+      transition: border-color 0.2s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(21, 101, 192, 0.1);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 70px;
+    }
+
+    .form-submit {
+      margin-top: var(--space-sm);
+    }
+
+    .btn--form {
+      width: 100%;
+      padding: 12px;
+    }
+
+    /* ========================================
+       FOOTER
+       ======================================== */
+    .footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.7);
+      padding: var(--space-lg) 0;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    .footer a {
+      color: rgba(255,255,255,0.9);
+    }
+
+    .footer__links {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-md);
+      margin-bottom: var(--space-sm);
+    }
+
+    .footer__links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* ========================================
+       SUCCESS MESSAGE
+       ======================================== */
+    .form-success {
+      display: none;
+      background: #ecfdf5;
+      border: 1px solid #6ee7b7;
+      border-radius: var(--radius-md);
+      padding: var(--space-md);
+      text-align: center;
+      color: #065f46;
+      font-weight: 500;
+    }
+
+    /* ========================================
+       RESPONSIVE
+       ======================================== */
+    @media (max-width: 768px) {
+      .hero__inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero__content p { margin-left: auto; margin-right: auto; }
+
+      .hero__image { order: -1; }
+      .hero__image img { height: 260px; }
+
+      .about__inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .about__photo {
+        max-width: 260px;
+        margin: 0 auto;
+      }
+
+      .classes__grid { grid-template-columns: 1fr; }
+
+      .form-grid { grid-template-columns: 1fr; }
+
+      .month-block__class-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+      }
+
+      .nav__links { display: none; }
+    }
+
+    @media (max-width: 480px) {
+      .hero { padding: var(--space-xl) 0; }
+      .about, .classes, .schedule { padding: var(--space-xl) 0; }
+    }
+
+    /* ========================================
+       MOBILE NAV
+       ======================================== */
+    .nav__toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    .nav__toggle svg {
+      width: 24px;
+      height: 24px;
+      color: var(--navy);
+    }
+
+    @media (max-width: 768px) {
+      .nav__toggle { display: block; }
+
+      .nav__links {
+        display: none;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        flex-direction: column;
+        padding: var(--space-sm) var(--gutter);
+        border-bottom: 1px solid var(--stone-dark);
+        box-shadow: var(--shadow-md);
+      }
+
+      .nav__links.open { display: flex; }
+
+      .nav__links .nav__cta {
+        text-align: center;
+        margin-top: var(--space-xs);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="container nav__inner">
+      <a href="#" class="nav__logo">
+        <img src="images/logo.png" alt="Rescue Ready TC">
+      </a>
+      <button class="nav__toggle" onclick="document.querySelector('.nav__links').classList.toggle('open')" aria-label="Toggle navigation">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+      <ul class="nav__links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#classes">Classes</a></li>
+        <li><a href="#schedule" class="nav__cta">Sign Up</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero__inner">
+      <div class="hero__content">
+        <div class="hero__badge">
+          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          American Heart Association Certified
+        </div>
+        <h1>CPR &amp; First Aid Training in <span>Cleveland, TN</span></h1>
+        <p>Hands-on, confidence-building classes taught by an active first responder. Get certified in BLS, First Aid, and CPR.</p>
+        <a href="#schedule" class="btn">View Upcoming Classes</a>
+      </div>
+      <div class="hero__image">
+        <img src="images/training-2.jpg" alt="Hands-on CPR training in progress">
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="container about__inner">
+      <div class="about__photo">
+        <img src="images/clay.jpg" alt="Clay Sneed, CPR Instructor">
+      </div>
+      <div class="about__text">
+        <h2>Your Instructor</h2>
+        <div class="about__name">Clay Sneed</div>
+        <p>Being a first responder, CPR isn't something I just teach &mdash; it's something I'm genuinely passionate about. In my line of work, I see every day how powerful CPR can be for patients and families, and I bring that real-world experience and real-world passion into every class.</p>
+        <p>Whether you need BLS, First Aid, or a general CPR awareness class, I'm your guy. I make training practical, hands-on, and confidence-building.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLASSES -->
+  <section class="classes" id="classes">
+    <div class="container">
+      <div class="section-header">
+        <h2>Classes Offered</h2>
+        <p>American Heart Association certified courses</p>
+      </div>
+      <div class="classes__grid">
+        <div class="class-card">
+          <h3>AHA BLS CPR</h3>
+          <div class="class-card__meta">
+            <span>
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              4 hours
+            </span>
+            <span>
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              Healthcare &amp; first responders
+            </span>
+          </div>
+          <p>Basic Life Support for healthcare providers, first responders, and anyone who wants the highest level of CPR certification. Covers adult, child, and infant CPR, AED use, and team-based resuscitation.</p>
+          <div class="class-card__price">$60</div>
+        </div>
+        <div class="class-card">
+          <h3>AHA Heartsaver First Aid &amp; CPR</h3>
+          <div class="class-card__meta">
+            <span>
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              6 hours
+            </span>
+            <span>
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              General public &amp; workplaces
+            </span>
+          </div>
+          <p>Comprehensive first aid and CPR training for the general public. Covers CPR, AED, choking, bleeding, splinting, and more. Great for workplaces, coaches, teachers, and parents who want to be prepared.</p>
+          <div class="class-card__price">$100</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCHEDULE & SIGN UP -->
+  <section class="schedule" id="schedule">
+    <div class="container">
+      <div class="section-header">
+        <h2>Upcoming Classes</h2>
+        <p>Select a month and sign up below</p>
+      </div>
+
+      <!-- NOVEMBER -->
+      <div class="month-block">
+        <div class="month-block__header">
+          <span class="month-block__month">November</span>
+          <span class="month-block__year">2026</span>
+        </div>
+        <div class="month-block__classes">
+          <div class="month-block__class-row">
+            <div>
+              <div class="month-block__class-name">AHA BLS CPR</div>
+              <div class="month-block__class-detail">November 28 &middot; 7:00 AM &middot; 4 hours</div>
+            </div>
+            <div class="month-block__class-price">$60</div>
+          </div>
+          <div class="month-block__class-row">
+            <div>
+              <div class="month-block__class-name">AHA Heartsaver First Aid &amp; CPR</div>
+              <div class="month-block__class-detail">November 28 &middot; 9:00 AM &middot; 6 hours</div>
+            </div>
+            <div class="month-block__class-price">$100</div>
+          </div>
+        </div>
+        <div class="signup-form">
+          <h4>Sign Up for November</h4>
+          <form name="november-signup" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="november-signup">
+            <input type="hidden" name="month" value="November 2026">
+            <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="nov-name">Full Name *</label>
+                <input type="text" id="nov-name" name="name" required>
+              </div>
+              <div class="form-group">
+                <label for="nov-email">Email *</label>
+                <input type="email" id="nov-email" name="email" required>
+              </div>
+              <div class="form-group">
+                <label for="nov-phone">Phone</label>
+                <input type="tel" id="nov-phone" name="phone">
+              </div>
+              <div class="form-group">
+                <label for="nov-class">Class *</label>
+                <select id="nov-class" name="class" required>
+                  <option value="">Select a class</option>
+                  <option value="BLS CPR - $60">AHA BLS CPR ($60)</option>
+                  <option value="Heartsaver First Aid & CPR - $100">Heartsaver First Aid &amp; CPR ($100)</option>
+                </select>
+              </div>
+              <div class="form-group form-group--full">
+                <label for="nov-notes">Notes (optional)</label>
+                <textarea id="nov-notes" name="notes" placeholder="Group size, questions, etc."></textarea>
+              </div>
+              <div class="form-group form-group--full form-submit">
+                <button type="submit" class="btn btn--form">Sign Up for November</button>
+              </div>
+            </div>
+          </form>
+          <div class="form-success" id="nov-success">Thanks! Your sign-up has been received. Clay will be in touch soon.</div>
+        </div>
+      </div>
+
+      <!-- DECEMBER -->
+      <div class="month-block">
+        <div class="month-block__header">
+          <span class="month-block__month">December</span>
+          <span class="month-block__year">2026</span>
+        </div>
+        <div class="month-block__classes">
+          <div class="month-block__class-row">
+            <div>
+              <div class="month-block__class-name">AHA BLS CPR</div>
+              <div class="month-block__class-detail">Date TBD &middot; 4 hours</div>
+            </div>
+            <div class="month-block__class-price">$60</div>
+          </div>
+          <div class="month-block__class-row">
+            <div>
+              <div class="month-block__class-name">AHA Heartsaver First Aid &amp; CPR</div>
+              <div class="month-block__class-detail">Date TBD &middot; 6 hours</div>
+            </div>
+            <div class="month-block__class-price">$100</div>
+          </div>
+        </div>
+        <div class="signup-form">
+          <h4>Sign Up for December</h4>
+          <form name="december-signup" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="december-signup">
+            <input type="hidden" name="month" value="December 2026">
+            <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="dec-name">Full Name *</label>
+                <input type="text" id="dec-name" name="name" required>
+              </div>
+              <div class="form-group">
+                <label for="dec-email">Email *</label>
+                <input type="email" id="dec-email" name="email" required>
+              </div>
+              <div class="form-group">
+                <label for="dec-phone">Phone</label>
+                <input type="tel" id="dec-phone" name="phone">
+              </div>
+              <div class="form-group">
+                <label for="dec-class">Class *</label>
+                <select id="dec-class" name="class" required>
+                  <option value="">Select a class</option>
+                  <option value="BLS CPR - $60">AHA BLS CPR ($60)</option>
+                  <option value="Heartsaver First Aid & CPR - $100">Heartsaver First Aid &amp; CPR ($100)</option>
+                </select>
+              </div>
+              <div class="form-group form-group--full">
+                <label for="dec-notes">Notes (optional)</label>
+                <textarea id="dec-notes" name="notes" placeholder="Group size, questions, etc."></textarea>
+              </div>
+              <div class="form-group form-group--full form-submit">
+                <button type="submit" class="btn btn--form">Sign Up for December</button>
+              </div>
+            </div>
+          </form>
+          <div class="form-success" id="dec-success">Thanks! Your sign-up has been received. Clay will be in touch soon.</div>
+        </div>
+      </div>
+
+      <!-- JANUARY -->
+      <div class="month-block">
+        <div class="month-block__header">
+          <span class="month-block__month">January</span>
+          <span class="month-block__year">2027</span>
+        </div>
+        <div class="month-block__classes">
+          <div class="month-block__class-row">
+            <div>
+              <div class="month-block__class-name">AHA BLS CPR</div>
+              <div class="month-block__class-detail">Date TBD &middot; 4 hours</div>
+            </div>
+            <div class="month-block__class-price">$60</div>
+          </div>
+          <div class="month-block__class-row">
+            <div>
+              <div class="month-block__class-name">AHA Heartsaver First Aid &amp; CPR</div>
+              <div class="month-block__class-detail">Date TBD &middot; 6 hours</div>
+            </div>
+            <div class="month-block__class-price">$100</div>
+          </div>
+        </div>
+        <div class="signup-form">
+          <h4>Sign Up for January</h4>
+          <form name="january-signup" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="january-signup">
+            <input type="hidden" name="month" value="January 2027">
+            <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="jan-name">Full Name *</label>
+                <input type="text" id="jan-name" name="name" required>
+              </div>
+              <div class="form-group">
+                <label for="jan-email">Email *</label>
+                <input type="email" id="jan-email" name="email" required>
+              </div>
+              <div class="form-group">
+                <label for="jan-phone">Phone</label>
+                <input type="tel" id="jan-phone" name="phone">
+              </div>
+              <div class="form-group">
+                <label for="jan-class">Class *</label>
+                <select id="jan-class" name="class" required>
+                  <option value="">Select a class</option>
+                  <option value="BLS CPR - $60">AHA BLS CPR ($60)</option>
+                  <option value="Heartsaver First Aid & CPR - $100">Heartsaver First Aid &amp; CPR ($100)</option>
+                </select>
+              </div>
+              <div class="form-group form-group--full">
+                <label for="jan-notes">Notes (optional)</label>
+                <textarea id="jan-notes" name="notes" placeholder="Group size, questions, etc."></textarea>
+              </div>
+              <div class="form-group form-group--full form-submit">
+                <button type="submit" class="btn btn--form">Sign Up for January</button>
+              </div>
+            </div>
+          </form>
+          <div class="form-success" id="jan-success">Thanks! Your sign-up has been received. Clay will be in touch soon.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__links">
+        <a href="https://www.facebook.com/people/Rescue-Ready-CPR-Training/61583073222094/" target="_blank" rel="noopener">
+          <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          Facebook
+        </a>
+      </div>
+      <p>&copy; 2026 Rescue Ready TC &middot; Cleveland, Tennessee</p>
+    </div>
+  </footer>
+
+  <script>
+    // Handle form submissions with inline success message
+    document.querySelectorAll('form[data-netlify="true"]').forEach(form => {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+        const successEl = this.nextElementSibling;
+        const btn = this.querySelector('button[type="submit"]');
+        const originalText = btn.textContent;
+        btn.textContent = 'Submitting...';
+        btn.disabled = true;
+
+        fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(formData).toString()
+        })
+        .then(res => {
+          if (res.ok) {
+            this.style.display = 'none';
+            successEl.style.display = 'block';
+          } else {
+            btn.textContent = originalText;
+            btn.disabled = false;
+            alert('Something went wrong. Please try again or contact us directly.');
+          }
+        })
+        .catch(() => {
+          // Local dev fallback
+          this.style.display = 'none';
+          successEl.style.display = 'block';
+        });
+      });
+    });
+
+    // Close mobile nav on link click
+    document.querySelectorAll('.nav__links a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.querySelector('.nav__links').classList.remove('open');
+      });
+    });
+  </script>
+
+</body>
+</html>

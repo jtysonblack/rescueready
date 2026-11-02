@@ -1,0 +1,11 @@
+[build]
+  publish = "."
+
+# Redirect form submissions to a success page (optional)
+# For now, Netlify handles this automatically with data-netlify="true"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
